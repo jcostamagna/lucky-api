@@ -7,16 +7,12 @@ const config: ConnectionOptions = {
     username: 'luckyapp',
     password: '123',
     database: 'luckyapp',
-    entities: [
-        __dirname + '/**/*.entity{.ts,.js}'
-    ],
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: false,
-    migrations: [
-        __dirname + '/migrations/**/*.entity{.ts,.js}'
-    ],
+    migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
     cli: {
-        migrationsDir: 'src/migrations',
-    }
+      migrationsDir: 'src/migrations',
+    },
 };
 
 export default config;

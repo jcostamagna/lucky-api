@@ -19,7 +19,10 @@ export class UserService {
         return await this.userRepository.find();
     }
 
-    async createUser(createUserDto: CreateUserDto): Promise<any> {
-        return createUserDto;
+    async createUser(createUserDto: CreateUserDto): Promise<User> {
+        const newUser = new User();
+        Object.assign(newUser, createUserDto);
+        console.log('newUser', newUser);
+        return await this.userRepository.save(newUser);
     }
 }
