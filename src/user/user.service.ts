@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/createUser.dto';
-import { User } from './user.entity';
+import { UserEntity } from './user.entity';
 import { sign } from 'jsonwebtoken';
 import { JWT_SECRET } from '@app/config';
 import { UserResponseInterface } from './types/userResponse.interface';
@@ -12,19 +12,19 @@ import { compare } from 'bcrypt';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
   ) {}
 
-  async getUser(id: number): Promise<User> {
+  async getUser(id: number): Promise<UserEntity> {
     return await this.userRepository.findOne(id);
   }
 
-  async findAll(): Promise<User[]> {
+  async findAll(): Promise<UserEntity[]> {
     return await this.userRepository.find();
   }
 
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
+  async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     const userByUsername = await this.userRepository.findOne({
       username: createUserDto.username,
     });
@@ -36,14 +36,14 @@ export class UserService {
       );
     }
 
-    const newUser = new User();
+    const newUser = new UserEntity();
     Object.assign(newUser, createUserDto);
     console.log('newUser', newUser);
     //this.userRepository.query('');
     return await this.userRepository.save(newUser);
   }
 
-  generateJwt(user: User): string {
+  generateJwt(user: UserEntity): string {
     return sign(
       {
         id: user.id,
@@ -53,7 +53,7 @@ export class UserService {
     );
   }
 
-  buildUserResponse(user: User): UserResponseInterface {
+  buildUserResponse(user: UserEntity): UserResponseInterface {
     return {
       user: {
         ...user,
@@ -62,7 +62,7 @@ export class UserService {
     };
   }
 
-  async login(loginUserDto: LoginUserDto): Promise<User> {
+  async login(loginUserDto: LoginUserDto): Promise<UserEntity> {
     const userByUsername = await this.userRepository.findOne({
       username: loginUserDto.username,
     });

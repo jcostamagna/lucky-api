@@ -1,4 +1,4 @@
-import { User } from '../user.entity';
+import { UserEntity } from '../user.entity';
 import { UserType } from './user.types';
 
 export interface UserResponseInterface {
