@@ -14,8 +14,8 @@ export class ProfileController {
   async getProfile(
     @User() user: UserEntity,
   ): Promise<ProfileResponseInterface> {
-    const profile = this.profileService.getProfile(user);
+    const profile = await this.profileService.getProfile(user);
 
-    return this.profileService.buildProfileResponse(user, await profile);
+    return this.profileService.buildProfileResponse(user, profile);
   }
 }

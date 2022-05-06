@@ -15,7 +15,7 @@ export class AddressEntity {
   @Column()
   street: string;
 
-  @OneToOne(() => CityEntity)
+  @OneToOne(() => CityEntity, { eager: true })
   @JoinColumn()
   city: CityEntity;
 }

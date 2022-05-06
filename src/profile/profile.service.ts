@@ -12,20 +12,28 @@ export class ProfileService {
     private readonly profileRepository: Repository<ProfileEntity>,
   ) {}
 
-  buildProfileResponse(
-    user: UserEntity,
-    profile: ProfileEntity,
-  ): ProfileResponseInterface {
-    return {
-      address: { city: '', country: '', street: '' },
-      name: profile.name,
-      id: user.id,
-    };
-  }
-
   async getProfile(user: UserEntity): Promise<ProfileEntity> {
     return await this.profileRepository.findOne({
       user: user,
     });
+  }
+
+  buildProfileResponse(
+    user: UserEntity,
+    profile: ProfileEntity,
+  ): ProfileResponseInterface {
+    const address = profile.address;
+    const city = address.city;
+    const country = city.country;
+
+    return {
+      id: user.id,
+      name: profile.name,
+      address: {
+        city: city.name,
+        country: country.name,
+        street: address.street,
+      },
+    };
   }
 }

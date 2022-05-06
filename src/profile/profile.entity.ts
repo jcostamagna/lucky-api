@@ -17,7 +17,7 @@ export class ProfileEntity {
   @JoinColumn()
   user: UserEntity;
 
-  @OneToOne(() => AddressEntity)
+  @OneToOne(() => AddressEntity, { eager: true })
   @JoinColumn()
   address: AddressEntity;
 

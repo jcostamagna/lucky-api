@@ -12,7 +12,7 @@ export class CityEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => CountryEntity)
+  @OneToOne(() => CountryEntity, { eager: true })
   @JoinColumn()
   country: CountryEntity;
 
