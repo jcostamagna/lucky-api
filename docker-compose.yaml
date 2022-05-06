@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  app:
+    image: jcostamagna/lucky-app:v6
+    command: >
+      bash -c "yarn db:migrate
+      && yarn db:seed 
+      && yarn start"
+    ports:
+      - "3000:3000"
+
+  postgres:
+    image: postgres:14.2-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: luckyapp
+      POSTGRES_DB: luckyapp
+      POSTGRES_HOST: database
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: "adminer:latest"
+    restart: always
+    ports:
+      - "8080:8080"
