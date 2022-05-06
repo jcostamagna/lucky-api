@@ -14,5 +14,5 @@ export class CreateUserDto {
   readonly address: string;
 
   @IsNotEmpty()
-  readonly cityId: string;
+  readonly cityId: number;
 }
