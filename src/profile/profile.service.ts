@@ -36,7 +36,6 @@ export class ProfileService {
     user: UserEntity,
     profile: ProfileEntity,
   ): ProfileResponseInterface {
-    console.log('adress', profile.address);
     const address = profile.address;
     const city = address.city;
     const country = city.country;
