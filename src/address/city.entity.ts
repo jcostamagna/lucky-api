@@ -1,9 +1,9 @@
 import {
   Column,
   Entity,
-  OneToOne,
-  PrimaryGeneratedColumn,
   JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CountryEntity } from '@app/address/country.entity';
 
@@ -12,7 +12,7 @@ export class CityEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => CountryEntity, { eager: true })
+  @ManyToOne(() => CountryEntity, { eager: true })
   @JoinColumn()
   country: CountryEntity;
 

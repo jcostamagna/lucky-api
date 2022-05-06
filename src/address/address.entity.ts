@@ -1,9 +1,9 @@
 import {
   Column,
   Entity,
-  OneToOne,
-  PrimaryGeneratedColumn,
   JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CityEntity } from '@app/address/city.entity';
 
@@ -15,7 +15,7 @@ export class AddressEntity {
   @Column()
   street: string;
 
-  @OneToOne(() => CityEntity, { eager: true })
+  @ManyToOne(() => CityEntity, { eager: true })
   @JoinColumn()
   city: CityEntity;
 }
