@@ -21,13 +21,24 @@ yarn v1.22.18
 Postgres v8.7.3
 ```
 
+## Running the app with Docker
+
+```bash
+# Docker
+$ docker-compose up
+```
+
+Will download images and run container for using it locally. 
+
+Application will run in localhost:3000 
+
 ## Installation
 
 ```bash
 $ yarn install
 ```
 
-## Running the app
+## Yarn commands
 
 ```bash
 # development
@@ -86,3 +97,10 @@ GET /profile
 Authorization header required ("Authorization": "jwt.token")
 
 It returns a relevant profile of the user logged.
+
+### Get Users
+```
+GET /users
+```
+
+It returns a list of users.
