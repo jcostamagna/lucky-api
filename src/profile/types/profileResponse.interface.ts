@@ -1,5 +1,3 @@
-import { ProfileType } from '@app/profile/types/profile.types';
-
 export interface ProfileResponseInterface {
   id: number;
   name: string;
