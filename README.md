@@ -45,9 +45,12 @@ $ yarn db:seed
 ## Endpoints
 
 ### Create Profile
-```json
-POST /profile
 
+```
+POST /profile
+```
+Body:
+```json
 {
   "user": {
     "username": "Username",
@@ -63,9 +66,11 @@ it returns same user with JWT in field token.
 
 
 ### Log in user
-```json
+```
 POST /users/login
-
+```
+Body:
+```json
 {
   "user": {
     "username": "Username",
@@ -77,8 +82,8 @@ POST /users/login
 it returns same user with JWT in field token.
 
 ### Get Profile
-```json
-GET /users/login
+```
+GET /profile
 ```
 
 Authorization header required ("Authorization": "jwt.token")
